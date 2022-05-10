@@ -21,7 +21,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  bookwsCar: [carSchema], //bookedCar ;[carSchema]
+  bookwsCar: [carSchema], 
 },
 // set this to use virtual below
 {
@@ -46,10 +46,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
 return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
-// In this case, we need to change 'bookCount' to 'carCount' to see how many car unbooked. 
-userSchema.virtual('carCount').get(function () {  //this should be carCount
-return this.bookedCar.length; //savebooks = bookedCar. 
+
+userSchema.virtual('carCount').get(function () {
+return this.bookedCar.length;
 });
 
 const User = model('User', userSchema);
