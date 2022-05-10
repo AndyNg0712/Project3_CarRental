@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-exrepss');
-const { User } = require('../models');
+const { User, Car } = require('../models');
 const { signToken } = requrie('../utils/auth');
 
 
@@ -27,15 +27,15 @@ const resolvers ={
       return {token, user};
     },
     addUser: async (parent, args) = {  // why this is wrong here????
-      const user = await User.create({ ...args});
-      const token = signToken(user);
-      return { token, user };
+      const user = await User.create({ ...args}),
+      const token = signToken(user),
+      return { token, user },
 
     },
     bookedCar: async (parent, { input }, context) => {
       if (context.user) {
         return await User.findOneAndUpdate({ _id: context.user._id },
-          { _id:context.user._id }
+          { _id:context.user._id },
           { $pull: { bookedCar: {bookedId } } },
           { new: true});
       }
