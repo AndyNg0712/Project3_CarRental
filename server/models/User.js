@@ -5,8 +5,9 @@ const dateFormat = require('../utils/auth');
 const carSchema = require('./Car');
 
 
-const userSchema = new Schema({
-  username: {
+const userSchema = new Schema(
+  {
+  username: { 
     type: String,
     required: true,
     unique: true,
@@ -21,9 +22,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  bookwsCar: [carSchema], 
+  bookedCar: [carSchema], 
 },
-// set this to use virtual below
+
 {
   toJSON: {
     virtuals: true,
@@ -41,7 +42,7 @@ if (this.isNew || this.isModified('password')) {
 next();
 });
 
-// custom method to compare and validate password for logging in
+
 userSchema.methods.isCorrectPassword = async function (password) {
 return bcrypt.compare(password, this.password);
 };

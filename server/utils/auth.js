@@ -28,7 +28,7 @@ module.exports = {
     // send to next endpoint
     return req;
   },
-  signToken: function ({ username, email, _id }) {
+  signToken: function ({ username, email, _id }) { //do we need to change username to fullname???
     const payload = { username, email, _id };
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });

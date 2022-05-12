@@ -1,6 +1,6 @@
-const { AuthenticationError } = require('apollo-server-exrepss');
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Car } = require('../models');
-const { signToken } = requrie('../utils/auth');
+const { signToken } = require('../utils/auth');
 
 
 const resolvers ={
@@ -26,10 +26,10 @@ const resolvers ={
 
       return {token, user};
     },
-    addUser: async (parent, args) = {  // why this is wrong here????
-      const user = await User.create({ ...args}),
-      const token = signToken(user),
-      return { token, user },
+    addUser: async (parent, args) => {  
+      const user = await User.create({ ...args});
+      const token = signToken(user);
+      return { token, user };
 
     },
     bookedCar: async (parent, { input }, context) => {

@@ -29,4 +29,4 @@ const carSchema = new Schema({
 
 });
 
-module.exports = CarSchema;
+module.exports = carSchema;
