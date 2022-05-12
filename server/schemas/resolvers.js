@@ -26,17 +26,17 @@ const resolvers ={
 
       return {token, user};
     },
-    addUser: async (parent, args) => {  
+    signUp: async (parent, args) => {  
       const user = await User.create({ ...args});
       const token = signToken(user);
       return { token, user };
 
     },
-    bookedCar: async (parent, { input }, context) => {
+    createBooking: async (parent, { input }, context) => {
       if (context.user) {
         return await User.findOneAndUpdate({ _id: context.user._id },
           { _id:context.user._id },
-          { $pull: { bookedCar: {bookedId } } },
+          { $pull: { booking: {bookingId } } },
           { new: true});
       }
       throw new AuthenticationError('You need to be logged in!');

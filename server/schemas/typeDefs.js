@@ -34,3 +34,6 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+
+//removebooking (bookingID: ID): Booking
